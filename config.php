@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "bdcontacts";
+$dbname = "blog";
 $username = "root";
 $password = "";
 

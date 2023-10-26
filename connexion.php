@@ -14,11 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Connexion réussie
         echo "Connexion réussie. Bienvenue, " . $user['pseudo'] . "!";
         echo '<script>alert("Connexion réussie !");</script>'; 
-        // Rediriger l'utilisateur vers la page "espacemembre.html" après la connexion réussie
         header('Location: espacemembre.html');
-        exit; // Arrêter le script PHP
+        exit;
     } else {
-        // Identifiants incorrects
         echo "Identifiants incorrects. Veuillez réessayer.";
         echo '<script>alert("Login Faux !");</script>'; 
     }
