@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pseudo = $_POST['pseudo'];
     $mot_de_passe = $_POST['mot_de_passe'];
 
-    $sql = "SELECT * FROM contact WHERE pseudo = ?";
+    $sql = "SELECT * FROM users WHERE pseudo = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$pseudo]);
     $user = $stmt->fetch();
