@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mot_de_passe = password_hash($_POST['mot_de_passe'], PASSWORD_DEFAULT);
 
     // Vérifier si le pseudo existe déjà dans la base de données
-    $sql_check = "SELECT COUNT(*) FROM contact WHERE pseudo = ?";
+    $sql_check = "SELECT COUNT(*) FROM users WHERE pseudo = ?";
     $stmt_check = $pdo->prepare($sql_check);
     $stmt_check->execute([$pseudo]);
     $count = $stmt_check->fetchColumn();
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo '<script>alert("Ce pseudo est déjà utilisé. Veuillez en choisir un autre.");</script>';
     } else {
         if (!empty($pseudo) && !empty($email) && !empty($mot_de_passe)) {
-            $sql = "INSERT INTO contact (pseudo, pass) VALUES (?, ?)";
+            $sql = "INSERT INTO users (pseudo, pass) VALUES (?, ?)";
             $stmt = $pdo->prepare($sql);
             
             if ($stmt->execute([$pseudo, $mot_de_passe])) {
