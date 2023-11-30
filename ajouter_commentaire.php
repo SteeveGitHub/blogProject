@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['commentaire']) && iss
 
         if ($insertStmt->execute([$articleId, $userId, $commentaire])) {
             echo "Commentaire ajouté avec succès!";
+            header('Location: articles.php');
         } else {
             echo "Erreur lors de l'ajout du commentaire.";
         }
