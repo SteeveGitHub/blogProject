@@ -9,7 +9,7 @@
 <body>
     <h1>Derniers Articles du Blog</h1>
 
-    <?php
+<?php
     // Requête SQL pour récupérer les 10 derniers articles
     $sql = "SELECT articles.id, articles.titre, articles.contenu, articles.date_creation, categorie.nomcategorie
             FROM articles
@@ -17,26 +17,24 @@
             ORDER BY articles.date_creation DESC
             LIMIT 10";
 
-    $result = $pdo->query($sql);
+        $result = $pdo->query($sql);
 
-    if ($result->rowCount() > 0) {
-        while ($row = $result->fetch()) {
-            ?>
-            <div class="article">
-                <h2><?php echo $row['titre']; ?></h2>
-                <p><?php echo $row['contenu']; ?></p>
-                <p>Date de publication : <?php echo $row['date_creation']; ?></p>
-                <p>Catégorie : <?php echo $row['nomcategorie']; ?></p>
-            </div>
-            <?php
-        }
-    } else {
-        echo 'Aucun article trouvé.';
-    }
+if ($result->rowCount() > 0) {
+while ($row = $result->fetch()) {
+echo '<div class="article">';
+    echo '<h2>' . $row['titre'] . '</h2>';
+    echo '<p>' . $row['contenu'] . '</p>';
+    echo '<p>Date de publication : ' . $row['date_creation'] . '</p>';
+    echo '<p>Catégorie : ' . $row['nomcategorie'] . '</p>';
+    echo '</div>';
+}
+} else {
+echo 'Aucun article trouvé.';
+}
 
-    // Fermer la connexion à la base de données
-    $pdo = null;
-    ?>
+// Fermer la connexion à la base de données
+$pdo = null;
+?>
 
 </body>
 </html>
