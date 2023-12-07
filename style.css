@@ -7,8 +7,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    height: 100dvh;
+    margin: 20px 0;
 }
 
 h2 {
@@ -87,6 +87,7 @@ h1, h2 {
 h1 {
     font-size: 36px;
     color: #ffcc00;
+    margin-top: 40px;
 }
 
 h2 {
@@ -148,8 +149,13 @@ input[type="submit"] {
     padding: 20px 20px;
     margin: 20px 0;
     background-color: #333;
-    height: 80%;
-    overflow-y: scroll;
+    width: 80%;
+}
+
+.article h1{
+    font-size: 24px;
+    color: #ffcc00;
+    margin-top: 4rem;
 }
 
 .btn-accueil, .btn-deconnexion {
@@ -160,6 +166,17 @@ input[type="submit"] {
     color: #fff;
     background-color: #ffcc00;
     border-radius: 4px;
+}
+
+.commentaire{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-color: #F1F1F1;
+    border: 1px solid #333;
+    border-radius: 20px;
+    color: #333;
+    padding: 2rem;
 }
 
 /* Responsive styles */
