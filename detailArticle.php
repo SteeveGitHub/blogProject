@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Détail de l'article</title>
-    <?php include 'config.php'; ?>
+    <?php include 'config.php'; 
+    session_start(); // Démarre la session si ce n'est pas déjà fait    
+    ?>
 </head>
 <body>
     <h1>Détail de l'article</h1>
@@ -61,9 +63,28 @@
             } else {
                 echo '<p>Aucun commentaire pour cet article.</p>';
             }
+
+            if(isset($_SESSION['pseudo'])) {
+                $user = $_SESSION['pseudo'];
+            
+            echo '<form class="" action="ajouter_commentaire.php" method="POST">';
+            echo '<label for="commentaire">Ajouter un commentaire :</label>';
+            echo '<textarea rows="10" cols="40" name="commentaire" id="commentaire" required></textarea><br>';
+            echo '<input type="hidden" name="articleId" value="' . $articleId . '">';
+            echo '<input type="submit" value="Poster le commentaire">';
+            echo '</form>';
+            echo '</div>';
+            }else{
+                echo '<p>Vous devez être connecté pour poster un commentaire.</p>';
+            }
+
+
         } else {
             echo 'ID de l\'article non fourni.';
         }
+
+       echo '<button class="" onclick="history.go(-1);">Page précédente  </button>';
+
 
         $pdo = null;
     ?>

@@ -3,6 +3,6 @@ session_start();
 
 session_destroy();
 
-header('Location: inscription.html');
+header('Location: connexion.html');
 exit;
 ?>

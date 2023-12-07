@@ -32,10 +32,13 @@
                 echo '<p>Date de publication : ' . $articleDate . '</p>';
                 echo '<p>Catégorie : ' . $articleCategory . '</p>';
                 echo '</div>';
+
             }
         } else {
             echo 'Aucun article trouvé.';
         }
+
+        echo '<button onclick="history.go(-1);">Precedent </button>';
 
         $pdo = null;
     ?>

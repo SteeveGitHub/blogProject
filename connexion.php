@@ -20,10 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pseudo']) && isset($_
 
         echo "Connexion réussie. Bienvenue, " . $user['pseudo'] . "!";
         echo '<script>alert("Connexion réussie !");</script>';
-        header('Location: espacemembre.html');
+        header('Location: espacemembre.php');
         exit;
     } else {
-        echo "Identifiants incorrects. Veuillez réessayer.";
         echo '<script>alert("Login Faux !");</script>';
     }
 }
