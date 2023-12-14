@@ -38,7 +38,7 @@
             echo 'Aucun article trouvé.';
         }
 
-        echo '<button onclick="history.go(-1);">Precedent </button>';
+        echo '<button onclick="history.go(-1);">Page précédente </button>';
 
         $pdo = null;
     ?>
