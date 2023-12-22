@@ -2,7 +2,15 @@
 
 session_start();
 include 'config.php';
+
+// Vérifier si l'utilisateur est un administrateur
+if ($_SESSION['isAdmin'] !== 1) {
+    // Rediriger vers la page de connexion si l'utilisateur n'est pas un admin
+    header('Location: connexion.html');
+    exit;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,36 +22,63 @@ include 'config.php';
 <body>
 
 <?php
-
-// Vérifier si l'utilisateur est un administrateur
-if ($_SESSION['isAdmin'] !== 1) {
-    header('Location: connexion.html');
-    exit;
-}
-
 echo "<h1>Administration des Articles</h1>";
 
-$sql = "SELECT * FROM articles WHERE etat = 'en_attente'";
-$result = $pdo->query($sql);
+// Afficher les articles en état "en_attente"
+$sqlEnAttente = "SELECT * FROM articles WHERE etat = 'en_attente'";
+$resultEnAttente = $pdo->query($sqlEnAttente);
 
-if ($result->rowCount() > 0) {
-    while ($row = $result->fetch()) {
+if ($resultEnAttente->rowCount() > 0) {
+    echo "<h2>Articles en Attente</h2>";
+    while ($rowEnAttente = $resultEnAttente->fetch()) {
         echo "<div class='article'>";
-        echo "<h2>" . $row['titre'] . "</h2>";
-        // Ajouter des boutons ou des liens pour valider ou rejeter
-        echo "<a href='valider_article.php?id=" . $row['id'] . "'>Valider</a> | ";
-        echo "<a href='rejeter_article.php?id=" . $row['id'] . "'>Rejeter</a>";
-        echo '<a href="deconnexion.php" class="btn-deconnexion">Deconnexion</a>';
-
+        echo "<h3>" . $rowEnAttente['titre'] . "</h3>";
+        // Ajouter des liens ou des boutons pour les actions que vous souhaitez
+        echo "<a href='valider_article.php?id=" . $rowEnAttente['id'] . "'>Valider</a> | ";
+        echo "<a href='rejeter_article.php?id=" . $rowEnAttente['id'] . "'>Rejeter</a> | ";
+        echo "<a href='supprimer_article.php?id=" . $rowEnAttente['id'] . "'>Supprimer</a>";
         echo "</div>";
     }
 } else {
-    echo "Aucun article en attente de validation.";
-    echo '<a href="deconnexion.php" class="btn-deconnexion">Deconnexion</a>';
-
+    echo "<p>Aucun article en attente.</p>";
 }
+
+// Afficher les articles en état "valide"
+$sqlValide = "SELECT * FROM articles WHERE etat = 'valide'";
+$resultValide = $pdo->query($sqlValide);
+
+if ($resultValide->rowCount() > 0) {
+    echo "<h2>Articles Validés</h2>";
+    while ($rowValide = $resultValide->fetch()) {
+        echo "<div class='article'>";
+        echo "<h3>" . $rowValide['titre'] . "</h3>";
+        // Ajouter des liens ou des boutons pour les actions que vous souhaitez
+        echo "<a href='#'>Modifier</a> | ";
+        echo "<a href='supprimer_article.php?id=" . $rowValide['id'] . "'>Supprimer</a>";
+        echo "</div>";
+    }
+} else {
+    echo "<p>Aucun article validé.</p>";
+}
+
+// Afficher les articles en état "rejete"
+$sqlRejete = "SELECT * FROM articles WHERE etat = 'rejete'";
+$resultRejete = $pdo->query($sqlRejete);
+
+if ($resultRejete->rowCount() > 0) {
+    echo "<h2>Articles Rejetés</h2>";
+    while ($rowRejete = $resultRejete->fetch()) {
+        echo "<div class='article'>";
+        echo "<h3>" . $rowRejete['titre'] . "</h3>";
+        // Ajouter des liens ou des boutons pour les actions que vous souhaitez
+        echo "<a href='#'>Modifier</a> | ";
+        echo "<a href='supprimer_article.php?id=" . $rowRejete['id'] . "'>Supprimer</a>";
+        echo "</div>";
+    }
+} else {
+    echo "<p>Aucun article rejeté.</p>";
+}
+
+echo '<a href="deconnexion.php" class="btn-deconnexion">Deconnexion</a>';
+
 ?>
-
-
-</body>
-</html>
