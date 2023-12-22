@@ -3,6 +3,6 @@ session_start();
 
 session_destroy();
 
-header('Location: connexion.html');
+header('Location: connexion.php');
 exit;
 ?>

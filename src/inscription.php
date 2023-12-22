@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->execute([$pseudo, $email, $pass])) {
                 echo '<script>alert("Inscription réussie !");</script>';
                 // Rediriger l'utilisateur vers la page de connexion après une inscription réussie
-                header('Location: connexion.html');
+                header('Location: connexion.php');
                 exit; // Arrêter le script PHP
             } else {
                 echo '<script>alert("Erreur lors de l\'inscription.");</script>';
