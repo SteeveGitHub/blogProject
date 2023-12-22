@@ -1,3 +1,6 @@
+    <?php include 'config.php'; 
+    session_start(); // Démarre la session si ce n'est pas déjà fait    
+    ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,9 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Détail de l'article</title>
-    <?php include 'config.php'; 
-    session_start(); // Démarre la session si ce n'est pas déjà fait    
-    ?>
 </head>
 <body>
     <h1>Détail de l'article</h1>
