@@ -20,8 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($count_pseudo > 0) {
         echo '<script>alert("Ce pseudo est déjà utilisé. Veuillez en choisir un autre.");</script>';
+        header('Location: index.html');
     } elseif ($count_email > 0) {
         echo '<script>alert("Cet email est déjà utilisé. Veuillez en choisir un autre.");</script>';
+        header('Location: index.html');
     } else {
         if (!empty($pseudo) && !empty($email) && !empty($pass)) {
             $sql = "INSERT INTO users (pseudo, email, pass) VALUES (?, ?, ?)";
@@ -29,8 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($stmt->execute([$pseudo, $email, $pass])) {
                 echo '<script>alert("Inscription réussie !");</script>';
+                $_SESSION['inscription_reussie'] = true;
                 // Rediriger l'utilisateur vers la page de connexion après une inscription réussie
-                header('Location: connexion.php');
+                header('Location: index.html');
                 exit; // Arrêter le script PHP
             } else {
                 echo '<script>alert("Erreur lors de l\'inscription.");</script>';

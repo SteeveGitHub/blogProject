@@ -21,6 +21,7 @@ echo '<body>';
 echo '    <div class="container">';
 echo '        <h1>Bienvenue dans votre espace personnel !</h1>';
 echo '        <a href="articles.php" class="btn-accueil">Lien vers les 10 derniers articles</a>';
+echo '        <a href="creer_article.php" class="btn-accueil">Ajouter un article</a>';
 echo '        <a href="deconnexion.php" class="btn-deconnexion">Deconnexion</a>';
 echo '    </div>';
 echo '</body>';
